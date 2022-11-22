@@ -44,3 +44,20 @@ class Advertisement(models.Model):
         for file in images:
             adv.images.create(name=get_random_string(47), image_file=file)
         adv.save()
+
+
+class AdvertisementImage(models.Model):
+    """
+    This class represents Image model.
+    Each advertisement has one or many images.
+    """
+    name = models.CharField(max_length=50, verbose_name="موضوع")
+    advertisement = models.ForeignKey(
+        Advertisement, on_delete=models.CASCADE, related_name='images', verbose_name="آگهی"
+    )
+    image_file = models.FileField(
+        upload_to='images/advertisement/',
+        validators=[FileExtensionValidator(allowed_extensions=('jpg', 'png', 'jpeg'))],
+        verbose_name="عکس"
+    )
+
