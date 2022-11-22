@@ -31,7 +31,7 @@ class City(models.Model):
 
 
 class District(models.Model):
-    name = models.CharField(max_length=50, verbose_name="شهرستان")
+    name = models.CharField(max_length=50, verbose_name="محله")
     slug = models.SlugField(max_length=50, allow_unicode='True', verbose_name="اسلاگ")
     city = models.ForeignKey(City, related_name='districts', on_delete=models.CASCADE, verbose_name="شهر")
 
@@ -39,8 +39,8 @@ class District(models.Model):
         return f"{self.name}"
 
     class Meta:
-        verbose_name = "شهرستان"
-        verbose_name_plural = "شهرستان ها"
+        verbose_name = "محله"
+        verbose_name_plural = "محله ها"
 
 
 class Location(models.Model):
@@ -49,7 +49,7 @@ class Location(models.Model):
     """
     province = models.ForeignKey(Province, on_delete=models.CASCADE, related_name="استان")
     city = models.ForeignKey(City, on_delete=models.CASCADE, related_name="شهر")
-    district = models.ForeignKey(District, on_delete=models.CASCADE, blank=True, null=True, verbose_name="شهرستان")
+    district = models.ForeignKey(District, on_delete=models.CASCADE, blank=True, null=True, verbose_name="محله")
 
     def __str__(self):
         return f"{self.city} < {self.province}"
