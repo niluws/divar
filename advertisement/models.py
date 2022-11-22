@@ -35,20 +35,6 @@ class Advertisement(models.Model):
         verbose_name = 'آگهی'
         verbose_name_plural = "آگهی ها"
 
-    @classmethod
-    def add(cls, user, title, description, price, location, category, images):
-        """
-        Get data an Advertisement and Save it in Database
-        """
-        adv = cls.objects.create(user=user,
-                                 title=title,
-                                 description=description,
-                                 price=price,
-                                 location=location,
-                                 category=category)
-        for file in images:
-            adv.images.create(name=get_random_string(47), image_file=file)
-        adv.save()
 
 
 class AdvertisementImage(models.Model):
