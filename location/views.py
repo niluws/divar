@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from rest_framework.generics import ListAPIView
+from .serializers import ProvinceSerializer
+from .models import Province
 
-# Create your views here.
+
+class CityProvinceView(ListAPIView):
+    """ advertisement from Advertisement model """
+    queryset = Province.objects.all()
+    serializer_class = ProvinceSerializer
+
