@@ -9,14 +9,20 @@ class LocationAdmin(admin.ModelAdmin):
 
 @admin.register(Province)
 class ProvinceAdmin(admin.ModelAdmin):
-    pass
+    fields = ['name']
+    readonly_fields = ['slug']
+    list_display = ('name', 'slug')
 
 
 @admin.register(City)
 class CityAdmin(admin.ModelAdmin):
-    pass
+    fields = ['name', 'state']
+    readonly_fields = ['slug']
+    list_display = ('name', 'slug', 'state')
 
 
 @admin.register(District)
 class DistinctAdmin(admin.ModelAdmin):
-    pass
+    fields = ['name', 'city']
+    readonly_fields = ['slug']
+    list_display = ('name', 'slug', 'city')

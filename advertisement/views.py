@@ -16,5 +16,6 @@ class AdvertisementViewSet(ModelViewSet):
     search_fields=['title','description','category']
     ordering_fields=['price']
     pagination_class = PageNumberPagination
+
     def get_serializer_context(self):
         return {'request': self.request}
