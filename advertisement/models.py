@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.core.validators import FileExtensionValidator
 from location.models import Location
 from category.models import Category
+from django.core.validators import RegexValidator
 
 User = get_user_model()
 
@@ -17,7 +18,7 @@ class Advertisement(models.Model):
                                  verbose_name='موقعیت')
     category = models.ForeignKey(Category, on_delete=models.CASCADE,
                                  verbose_name='دسته')
-    melicode = models.CharField(max_length=10, verbose_name='کد ملی')
+    melicode = models.CharField(max_length=10, validators=[RegexValidator(r'^\d{1,10}$')], verbose_name='کد ملی')
     nationality = models.CharField(max_length=13, choices=nationality_choices, default='ایرانی', verbose_name="ملیت")
     is_active_chat = models.BooleanField(verbose_name="چت دیوار فعال شود", default=True)
     is_show_phone = models.BooleanField(verbose_name="شماره تلفن در آگهی نمایش داده نشود", default=False)

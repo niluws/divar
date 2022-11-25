@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Province(models.Model):
-    name = models.CharField(max_length=50, verbose_name="استان")
+    name = models.CharField(max_length=50, verbose_name="اسم",unique=True)
     slug = models.SlugField(verbose_name="اسلاگ", allow_unicode=True)
 
     def __str__(self):
@@ -14,7 +14,7 @@ class Province(models.Model):
 
 
 class City(models.Model):
-    name = models.CharField(max_length=50, verbose_name="شهر")
+    name = models.CharField(max_length=50, verbose_name="اسم")
     slug = models.SlugField(verbose_name="اسلاگ", allow_unicode=True)
     state = models.ForeignKey(Province, related_name='cities', on_delete=models.CASCADE, verbose_name="استان")
 
@@ -31,7 +31,7 @@ class City(models.Model):
 
 
 class District(models.Model):
-    name = models.CharField(max_length=50, verbose_name="محله")
+    name = models.CharField(max_length=50, verbose_name="اسم")
     slug = models.SlugField(verbose_name="اسلاگ", allow_unicode=True)
     city = models.ForeignKey(City, related_name='districts', on_delete=models.CASCADE, verbose_name="شهر")
 
