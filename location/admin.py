@@ -9,20 +9,30 @@ class LocationAdmin(admin.ModelAdmin):
 
 @admin.register(Province)
 class ProvinceAdmin(admin.ModelAdmin):
-    fields = ['name']
-    readonly_fields = ['slug']
+    # fields = ['name']
+    # readonly_fields = ['slug']
+    # list_editable = 'name'
     list_display = ('name', 'slug')
+    prepopulated_fields = {
+        'slug': ['name']
+    }
 
 
 @admin.register(City)
 class CityAdmin(admin.ModelAdmin):
-    fields = ['name', 'state']
-    readonly_fields = ['slug']
+    # fields = ['name', 'state']
+    # readonly_fields = ['slug']
     list_display = ('name', 'slug', 'state')
+    prepopulated_fields = {
+        'slug':['name']
+    }
 
 
 @admin.register(District)
 class DistinctAdmin(admin.ModelAdmin):
-    fields = ['name', 'city']
-    readonly_fields = ['slug']
+    # fields = ['name', 'city']
+    # readonly_fields = ['slug']
     list_display = ('name', 'slug', 'city')
+    prepopulated_fields = {
+        'slug': ['name']
+    }

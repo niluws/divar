@@ -8,8 +8,7 @@ class AdvertisementImageInline(admin.TabularInline):
 
 @admin.register(Advertisement)
 class AdvertisementAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category')
-    readonly_fields = ['slug']
+    list_display = ('title', 'category','advslug')
     inlines = [
         AdvertisementImageInline
     ]

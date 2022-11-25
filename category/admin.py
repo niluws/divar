@@ -6,4 +6,4 @@ from .models import Category
 class AdminCategory(admin.ModelAdmin):
     fields = ('name', 'parent')
     readonly_fields = ['slug']
-    list_display = ('name', 'parent','slug')
+    list_display = ('name', 'parent', 'slug')
