@@ -44,9 +44,6 @@ class District(models.Model):
 
 
 class Location(models.Model):
-    """
-    This model represents location of published advertisement by User
-    """
     province = models.ForeignKey(Province, on_delete=models.CASCADE, related_name="استان")
     city = models.ForeignKey(City, on_delete=models.CASCADE, related_name="شهر")
     district = models.ForeignKey(District, on_delete=models.CASCADE, blank=True, null=True, verbose_name="محله")

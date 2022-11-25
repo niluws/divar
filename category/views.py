@@ -6,4 +6,3 @@ from .models import Category
 class CategoryView(ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-
