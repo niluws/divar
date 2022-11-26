@@ -2,5 +2,5 @@ from rest_framework.routers import DefaultRouter
 from . import views
 
 router = DefaultRouter()
-router.register('', views.AdvertisementViewSet)
+router.register('advertisement', views.AdvertisementViewSet)
 urlpatterns = router.urls
