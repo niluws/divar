@@ -1,28 +1,24 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.core.validators import FileExtensionValidator
-from location.models import Location
+from location.models import City,District,Province
 from category.models import Category
-from django.core.validators import RegexValidator
 
 User = get_user_model()
 
 
 class Advertisement(models.Model):
-    nationality_choices = (("ایرانی", "ایرانی"), ("اتباع خارجی", "اتباع خارجی"))
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='کاربر')
     title = models.CharField(max_length=50, verbose_name='موضوع')
     description = models.TextField(blank=True, verbose_name="توضیحات")
     price = models.PositiveIntegerField(default=0, verbose_name="قیمت")
-    location = models.ForeignKey(Location, on_delete=models.CASCADE,
-                                 verbose_name='موقعیت')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE,
-                                 verbose_name='دسته')
-    melicode = models.CharField(max_length=10, validators=[RegexValidator(r'^\d{1,10}$')], verbose_name='کد ملی')
-    nationality = models.CharField(max_length=13, choices=nationality_choices, default='ایرانی', verbose_name="ملیت")
+    province = models.ForeignKey(Province, on_delete=models.CASCADE, verbose_name="استان")
+    city = models.ForeignKey(City, on_delete=models.CASCADE,verbose_name="شهر")
+    district = models.ForeignKey(District, on_delete=models.CASCADE, verbose_name="محله")
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,verbose_name='دسته')
     is_active_chat = models.BooleanField(verbose_name="چت دیوار فعال شود", default=True)
     is_show_phone = models.BooleanField(verbose_name="شماره تلفن در آگهی نمایش داده نشود", default=False)
-    advslug = models.SlugField(verbose_name="اسلاگ", allow_unicode=True, editable=False)
+    slug = models.SlugField(verbose_name="اسلاگ", allow_unicode=True, editable=False)
 
     def __str__(self):
         return self.title

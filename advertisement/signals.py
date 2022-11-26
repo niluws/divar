@@ -6,24 +6,17 @@ from django.utils.text import slugify
 
 @receiver(pre_save, sender=Advertisement)
 def create_post(sender, instance, *args, **kwargs):
-    if not instance.advslug:
-        instance.advslug = create_unique_slug(instance)
+    if not instance.slug:
+        instance.slug = create_unique_slug(instance)
 
 
-def create_unique_slug(instance, new_advslug=None):
-    if new_advslug is not None:
-        advslug = new_advslug
-        print(advslug)
+def create_unique_slug(instance, new_slug=None):
+    if new_slug is not None:
+        slug = new_slug
     else:
-        advslug = slugify(instance.title, allow_unicode=True)
-        print(advslug)
-    qs = Advertisement.objects.filter(advslug=advslug)
-    print(qs)
+        slug = slugify(instance.title, allow_unicode=True)
+    qs = Advertisement.objects.filter(slug=slug)
     if qs.exists():
-        print(qs.last())
-        new_advslug = f'{advslug}-{qs.first().id}'
-        return create_unique_slug(instance, new_advslug)
-    return advslug
-
-
-
+        new_slug = f'{slug}-{qs.first().id}'
+        return create_unique_slug(instance, new_slug)
+    return slug

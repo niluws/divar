@@ -41,8 +41,8 @@ class District(models.Model):
 
 
 class Location(models.Model):
-    province = models.ForeignKey(Province, on_delete=models.CASCADE, related_name="استان")
-    city = models.ForeignKey(City, on_delete=models.CASCADE, related_name="شهر")
+    province = models.ForeignKey(Province, on_delete=models.CASCADE, verbose_name="استان")
+    city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name="شهر")
     district = models.ForeignKey(District, on_delete=models.CASCADE, blank=True, null=True, verbose_name="محله")
 
     def __str__(self):
