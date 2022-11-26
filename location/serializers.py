@@ -1,22 +1,31 @@
 from rest_framework import serializers
-from .models import Province, City
+from .models import Province, City, District
 
 
 class CitySerializer(serializers.ModelSerializer):
+    province = serializers.StringRelatedField()
+
     class Meta:
         model = City
-        fields = ['name','state']
+        fields = ['city', 'province']
+
+
+class DistrictSerializer(serializers.ModelSerializer):
+    city = serializers.StringRelatedField()
+
+    class Meta:
+        model = District
+        fields = ['province', 'city']
 
 
 class ProvinceSerializer(serializers.ModelSerializer):
-    cities = serializers.HyperlinkedRelatedField(
-        view_name='city-detail',
+    cities = serializers.SlugRelatedField(
+        queryset=City.objects.all(),
         many=True,
-        read_only=True
-
+        slug_field='city',
 
     )
 
     class Meta:
         model = Province
-        fields = ['name', 'cities']
+        fields = ['province', 'cities']

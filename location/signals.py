@@ -14,7 +14,7 @@ def create_unique_slug(instance, new_slug=None):
     if new_slug is not None:
         slug = new_slug
     else:
-        slug = slugify(instance.name, allow_unicode=True)
+        slug = slugify(instance.district, allow_unicode=True)
     qs = District.objects.filter(slug=slug)
     if qs.exists():
         new_slug = f'{slug}-{qs.first().id}'
@@ -32,7 +32,7 @@ def create_unique_slug_city(instance, new_slug=None):
     if new_slug is not None:
         slug = new_slug
     else:
-        slug = slugify(instance.name, allow_unicode=True)
+        slug = slugify(instance.city, allow_unicode=True)
     qs = City.objects.filter(slug=slug)
     if qs.exists():
         new_slug = f'{slug}-{qs.first().id}'

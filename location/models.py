@@ -2,11 +2,11 @@ from django.db import models
 
 
 class Province(models.Model):
-    name = models.CharField(max_length=50, verbose_name="اسم",unique=True)
+    province = models.CharField(max_length=50, verbose_name="اسم",unique=True)
     slug = models.SlugField(verbose_name="اسلاگ", allow_unicode=True)
 
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.province}"
 
     class Meta:
         verbose_name = 'استان'
@@ -14,29 +14,26 @@ class Province(models.Model):
 
 
 class City(models.Model):
-    name = models.CharField(max_length=50, verbose_name="اسم")
+    city = models.CharField(max_length=50, verbose_name="اسم")
     slug = models.SlugField(verbose_name="اسلاگ", allow_unicode=True)
-    state = models.ForeignKey(Province, related_name='cities', on_delete=models.CASCADE, verbose_name="استان")
+    province = models.ForeignKey(Province, on_delete=models.CASCADE, verbose_name="استان",related_name="cities")
 
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.city}"
 
     class Meta:
         verbose_name = "شهر"
         verbose_name_plural = "شهر ها"
 
-    def get_absolute_url(self):
-        from django.urls import reverse
-        return reverse('advertisement-list', args=[self.name])
 
 
 class District(models.Model):
-    name = models.CharField(max_length=50, verbose_name="اسم")
+    district = models.CharField(max_length=50, verbose_name="اسم")
     slug = models.SlugField(verbose_name="اسلاگ", allow_unicode=True)
-    city = models.ForeignKey(City, related_name='districts', on_delete=models.CASCADE, verbose_name="شهر")
+    city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name="شهر")
 
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.district}"
 
     class Meta:
         verbose_name = "محله"

@@ -1,19 +1,18 @@
-from rest_framework.viewsets import ModelViewSet
-from .serializers import ProvinceSerializer, CitySerializer
-from .models import Province, City
+from .serializers import ProvinceSerializer, CitySerializer, DistrictSerializer
+from .models import Province, City, District
+from rest_framework.generics import ListAPIView
 
 
-class ProvinceView(ModelViewSet):
+class ProvinceView(ListAPIView):
     queryset = Province.objects.all()
     serializer_class = ProvinceSerializer
 
-    def get_serializer_context(self):
-        return {'request': self.request}
 
-
-class CityView(ModelViewSet):
+class CityView(ListAPIView):
     queryset = City.objects.all()
     serializer_class = CitySerializer
 
-    def get_serializer_context(self):
-        return {'request': self.request}
+
+class DistrictView(ListAPIView):
+    queryset = District.objects.all()
+    serializer_class = DistrictSerializer

@@ -12,22 +12,22 @@ class ProvinceAdmin(admin.ModelAdmin):
     # fields = ['name']
     # readonly_fields = ['slug']
     # list_editable = 'name'
-    list_display = ('name', 'slug')
+    list_display = ('province', 'slug')
     prepopulated_fields = {
-        'slug': ['name']
+        'slug': ['province']
     }
 
 
 @admin.register(City)
 class CityAdmin(admin.ModelAdmin):
-    fields = ['name', 'state']
+    fields = ['city', 'province']
     readonly_fields = ['slug']
-    list_display = ('name', 'slug', 'state')
+    list_display = ('city', 'slug', 'province')
 
 
 
 @admin.register(District)
 class DistinctAdmin(admin.ModelAdmin):
-    fields = ['name', 'city']
+    fields = ['district', 'city']
     readonly_fields = ['slug']
-    list_display = ('name', 'slug', 'city')
+    list_display = ('district', 'slug', 'city')

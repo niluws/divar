@@ -1,7 +1,9 @@
-from rest_framework.routers import DefaultRouter
+from django.urls import path
 from . import views
 
-router = DefaultRouter()
-router.register('cities', views.CityView)
-router.register('provinces', views.ProvinceView)
-urlpatterns = router.urls
+urlpatterns = [
+    path('provinces/', views.ProvinceView.as_view()),
+    path('cities/', views.CityView.as_view()),
+    path('district/', views.DistrictView.as_view()),
+]
+
