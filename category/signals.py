@@ -14,7 +14,7 @@ def create_unique_slug(instance, new_slug=None):
     if new_slug is not None:
         slug = new_slug
     else:
-        slug = slugify(instance.name, allow_unicode=True)
+        slug = slugify(instance.category, allow_unicode=True)
     qs = Category.objects.filter(slug=slug)
     if qs.exists():
         print(qs.last())

@@ -5,12 +5,12 @@ from .models import Category
 class ParentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['name']
+        fields = ['category']
 
 
 class CategorySerializer(serializers.ModelSerializer):
-    children = ParentSerializer(many=True)
+    subcategory = ParentSerializer(many=True)
 
     class Meta:
         model = Category
-        fields = ['name', 'children']
+        fields = ['category', 'subcategory']
