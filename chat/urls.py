@@ -3,5 +3,5 @@ from . import views
 
 router = DefaultRouter()
 router.register('rooms', views.RoomViewSet)
-router.register('rooms', views.ChatViewSet)
+router.register('messages', views.ChatViewSet)
 urlpatterns = router.urls
