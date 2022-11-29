@@ -1,12 +1,16 @@
-from django.contrib.auth.models import User
+from .models import Room, Message
 from rest_framework import serializers
-from chat.models import Message
 
 
 class MessageSerializer(serializers.ModelSerializer):
-    sender = serializers.SlugRelatedField(many=False, slug_field='username', queryset=User.objects.all())
-    receiver = serializers.SlugRelatedField(many=False, slug_field='username', queryset=User.objects.all())
-
     class Meta:
         model = Message
-        fields = ['sender', 'receiver', 'message', 'timestamp']
+        fields = ['message_sender_id', 'message_receiver_id', 'message', 'date']
+
+
+class RoomSerializer(serializers.ModelSerializer):
+    message_set = MessageSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Room
+        fields = ["pk", 'advertisement', "date", 'message_set']
