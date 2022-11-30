@@ -1,11 +1,15 @@
 from .models import Room, Message
 from rest_framework import serializers
-from core.serializer import UserSerializer
+from core.models import User
 
 
 class MessageSerializer(serializers.ModelSerializer):
-    message_sender = UserSerializer(read_only=True)
-    message_receiver = UserSerializer(read_only=True)
+    message_sender = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.all(),
+    )
+    message_receiver = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.all(),
+    )
 
     class Meta:
         model = Message

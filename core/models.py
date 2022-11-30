@@ -1,10 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import RegexValidator
 
 
 class User(AbstractUser):
+    phone_regex = RegexValidator(regex='^09[0-3][0-9]-?[0-9]{3}-?[0-9]{4}',
+                                 message="Phone number must be entered in the format: '0999 999 9999'. Up to 11 digits allowed.")
     username = models.CharField(verbose_name='نام کاربری', max_length=50, unique=True, null=True)
-    phone_number = models.CharField(verbose_name='شماره تلفن', max_length=14, null=True, unique=True)
+    phone_number = models.CharField(verbose_name='شماره تلفن', validators=[phone_regex], max_length=11, null=True,
+                                    unique=True)
     Address = models.CharField(verbose_name='آدرس', max_length=100, null=True)
     Age = models.IntegerField(verbose_name='سن', default=0, null=True)
     mellicode = models.CharField(verbose_name='کدملی', max_length=10, null=True)

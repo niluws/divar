@@ -8,12 +8,16 @@ from .models import User, PhoneOtp
 from uuid import uuid4
 from rest_framework.authtoken.models import Token
 
-sms = ghasedakpack.Ghasedak('d05a1073f01cf408a3358b9bd919d29ed1502685dbedd00474ac917a01b23af3')
+sms = ghasedakpack.Ghasedak("d05a1073f01cf408a3358b9bd919d29ed1502685dbedd00474ac917a01b23af3")
+template = "randcode"
+param1 = "تست 1"
+receptor = "09103237965"
+type = '1'
 
 
 class ValidatePhoneNumber(APIView):
     '''This class view takes phone number
-    if it doesn't  already exists then it sends otp for coming phone numbers then rediirect to register view, and
+    if it doesn't  already exists then it sends otp for coming phone numbers then redirect to register view, and
     if it does then sent otp and redirect to verify existed user and login '''
 
     def get(self, request):
@@ -23,10 +27,10 @@ class ValidatePhoneNumber(APIView):
         token = str(uuid4())
         phone_number = request.data.get('phone_number')
         if phone_number:
-            phone = phone_number
-            user = User.objects.get(phone_number=phone)
             token = str(uuid4())
-            if user:
+            phone = phone_number
+            if User.objects.filter(phone_number=phone):
+                user = User.objects.get(phone_number=phone)
                 send_otp(phone, token)
                 return HttpResponseRedirect(
                     reverse('account:validate_exist_user') + f'?token={token}&user_id={user.id}')
@@ -80,8 +84,9 @@ class ValidateExistUser(APIView):
 def send_otp(phone, token):
     '''this function takes a phone number and token and create  a rondom code and create instance from PhoneOtp model then send code with sms'''
     if phone:
+        print(phone)
         key = randint(1000, 9999)
-        sms.verification({'receptor': 'f{phone}', 'type': '1', 'template': ' randcode', 'param1': 'key'})
+        sms.verification({'receptor': receptor, 'type': type, 'template': template, 'param1': param1})
         PhoneOtp.objects.create(phone_number=phone,
                                 otpcode=key,
                                 token=token)
