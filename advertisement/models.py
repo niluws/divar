@@ -1,14 +1,12 @@
 from django.db import models
-from django.contrib.auth import get_user_model
 from django.core.validators import FileExtensionValidator
 from location.models import City,District,Province
 from category.models import Category
-
-User = get_user_model()
+from django.conf import settings
 
 
 class Advertisement(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='کاربر')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='کاربر')
     title = models.CharField(max_length=50, verbose_name='موضوع')
     description = models.TextField(blank=True, verbose_name="توضیحات")
     price = models.PositiveIntegerField(default=0, verbose_name="قیمت")

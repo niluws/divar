@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'category',
     'advertisement',
     'location',
-    'chat'
+    'chat',
+    'core'
 ]
 
 MIDDLEWARE = [
@@ -138,7 +139,7 @@ import os
 
 STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-
+AUTH_USER_MODEL='core.User'
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

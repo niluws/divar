@@ -1,8 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 import uuid
 from datetime import datetime
 from advertisement.models import Advertisement
+
 
 
 class Room(models.Model):
@@ -19,8 +20,8 @@ class Room(models.Model):
 
 class Message(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
-    message_sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='%(class)s_sender')
-    message_receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='%(class)s_receiver')
+    message_sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='%(class)s_sender')
+    message_receiver = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='%(class)s_receiver')
     message = models.TextField()
     date = models.DateTimeField(default=datetime.now)
 
