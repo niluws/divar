@@ -1,16 +1,20 @@
 from .models import Room, Message
 from rest_framework import serializers
+from core.serializer import UserSerializer
 
 
 class MessageSerializer(serializers.ModelSerializer):
+    message_sender = UserSerializer(read_only=True)
+    message_receiver = UserSerializer(read_only=True)
+
     class Meta:
         model = Message
-        fields = ['message_sender_id', 'message_receiver_id', 'message', 'date']
+        fields = ['room', 'message_sender', 'message_receiver', 'message', 'date']
 
 
 class RoomSerializer(serializers.ModelSerializer):
-    message_set = MessageSerializer(many=True, read_only=True)
+    messages = MessageSerializer(many=True, read_only=True)
 
     class Meta:
         model = Room
-        fields = ["pk", 'advertisement', "date", 'message_set']
+        fields = ["pk", 'advertisement', "date", 'messages']
