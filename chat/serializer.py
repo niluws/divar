@@ -1,6 +1,13 @@
 from .models import Room, Message
 from rest_framework import serializers
 from core.models import User
+from advertisement.models import Advertisement
+
+
+class AdvertisementSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Advertisement
+        fields = ['id', 'title']
 
 
 class MessageSerializer(serializers.ModelSerializer):
@@ -18,6 +25,7 @@ class MessageSerializer(serializers.ModelSerializer):
 
 class RoomSerializer(serializers.ModelSerializer):
     messages = MessageSerializer(many=True, read_only=True)
+    advertisement = AdvertisementSerializer()
 
     class Meta:
         model = Room
