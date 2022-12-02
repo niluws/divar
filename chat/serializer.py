@@ -30,3 +30,4 @@ class RoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room
         fields = ["pk", 'advertisement', "date", 'messages']
+

@@ -8,3 +8,4 @@ class PostsConfig(AppConfig):
 
     def ready(self):
         import advertisement.signals
+

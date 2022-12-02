@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'advertisement',
     'location',
     'chat',
-    'core'
+    'core',
 ]
 
 MIDDLEWARE = [

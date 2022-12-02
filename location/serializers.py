@@ -29,3 +29,4 @@ class ProvinceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Province
         fields = ['province', 'cities']
+

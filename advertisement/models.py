@@ -35,3 +35,4 @@ class AdvertisementImage(models.Model):
         validators=[FileExtensionValidator(allowed_extensions=('jpg', 'png', 'jpeg'))],
         verbose_name="عکس"
     )
+

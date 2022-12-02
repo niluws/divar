@@ -7,3 +7,4 @@ urlpatterns=[
      path('exist_user',views.ValidateExistUser.as_view(),name='validate_exist_user' )
 
 ]
+

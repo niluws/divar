@@ -12,3 +12,4 @@ class AdvertisementAdmin(admin.ModelAdmin):
     inlines = [
         AdvertisementImageInline
     ]
+

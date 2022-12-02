@@ -7,3 +7,4 @@ class LocationConfig(AppConfig):
     verbose_name = 'موقعیت ها'
     def ready(self):
         import location.signals
+

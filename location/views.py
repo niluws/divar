@@ -16,3 +16,4 @@ class CityView(ListAPIView):
 class DistrictView(ListAPIView):
     queryset = District.objects.all()
     serializer_class = DistrictSerializer
+

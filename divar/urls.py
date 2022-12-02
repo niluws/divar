@@ -9,3 +9,4 @@ urlpatterns = [
     path('chat/', include('chat.urls')),
     path('core/', include('core.urls')),
 ]
+

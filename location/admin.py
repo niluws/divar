@@ -25,7 +25,6 @@ class CityAdmin(admin.ModelAdmin):
     list_display = ('city', 'slug', 'province')
 
 
-
 @admin.register(District)
 class DistinctAdmin(admin.ModelAdmin):
     fields = ['district', 'city']

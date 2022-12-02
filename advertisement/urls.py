@@ -4,3 +4,4 @@ from . import views
 router = DefaultRouter()
 router.register('advertisement', views.AdvertisementViewSet)
 urlpatterns = router.urls
+

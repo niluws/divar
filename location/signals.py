@@ -38,3 +38,4 @@ def create_unique_slug_city(instance, new_slug=None):
         new_slug = f'{slug}-{qs.first().id}'
         return create_unique_slug(instance, new_slug)
     return slug
+

@@ -33,3 +33,4 @@ class Message(models.Model):
 
     def __str__(self):
         return f"Message({self.message} ( from {self.message_sender} to {self.message_receiver}))"
+

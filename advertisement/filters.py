@@ -9,3 +9,4 @@ class AdvertisementFilter(FilterSet):
             'category_id': ['exact'],
             'price': ['lt', 'gt']
         }
+

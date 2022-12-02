@@ -19,3 +19,4 @@ class ChatViewSet(ModelViewSet):
     serializer_class = MessageSerializer
     def get_serializer_context(self):
         return {'request': self.request}
+

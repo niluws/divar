@@ -51,3 +51,4 @@ class Location(models.Model):
     class Meta:
         verbose_name = "موقعیت"
         verbose_name_plural = "موقعیت ها"
+

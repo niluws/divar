@@ -6,4 +6,3 @@ urlpatterns = [
     path('cities/', views.CityView.as_view()),
     path('district/', views.DistrictView.as_view()),
 ]
-
