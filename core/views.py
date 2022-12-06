@@ -10,7 +10,6 @@ from rest_framework.authtoken.models import Token
 
 sms = ghasedakpack.Ghasedak("d05a1073f01cf408a3358b9bd919d29ed1502685dbedd00474ac917a01b23af3")
 template = "randcode"
-# param1 = "تست 1"
 receptor = "09385118659"
 type = '1'
 
@@ -86,7 +85,7 @@ def send_otp(phone, token):
     if phone:
         print(phone)
         key = randint(1000, 9999)
-        sms.verification({'receptor': '09385118659','type': '1','template': 'randcode','param1': key})
+        sms.verification({'receptor': phone, 'type': type, 'template': template, 'param1': key})
         PhoneOtp.objects.create(phone_number=phone,
                                 otpcode=key,
                                 token=token)
